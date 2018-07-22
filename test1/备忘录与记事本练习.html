@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>风泽百树的记事本与备忘录练习</title>
+</head>
+<body ng-app="myApp">
+<script type="text/javascript" src="../angular-1.2.29/angular.js"></script>
+<div ng-controller="myNote">
+  <h1>记事本</h1>
+  <textarea name="note" rows="20" cols="50" ng-model="noteContent"></textarea>
+  <br>
+  <button ng-click="add()">新增</button>
+  <button ng-click="clear()">清空</button>
+  <button ng-click="reload()">读取</button>
+</div>
+<div ng-controller="myNote2">
+  <h1>备忘录</h1>
+  <input type="text" ng-model="noteTitle">
+  <button ng-click="add()">添加</button>
+  <div ng-repeat="todo in todos">
+    <input type="checkbox" ng-model="todo.checked">
+    <span>{{todo.title}}</span>
+  </div>
+  <button ng-click="delete()">删除选中</button>
+</div>
+<script type="text/javascript">
+    angular.module('myApp',[])
+      .controller('myNote',['$scope',function ($scope) {
+        $scope.noteContent='';
+        $scope.add=function(){
+          if($scope.noteContent!==''||null){
+            var content=$scope.noteContent;
+            sessionStorage.setItem('noteContent',content);
+            $scope.noteContent='';
+          }
+
+        };
+        $scope.clear=function(){
+          $scope.noteContent='';
+        };
+        $scope.reload=function(){
+          $scope.noteContent=sessionStorage.getItem('noteContent');
+        }
+      }])
+      .controller('myNote2',['$scope',function($scope){
+        $scope.noteTitle='';
+        $scope.todos=[
+          {
+            title:'欢迎您',
+            checked:false
+          }
+        ];
+        $scope.add=function(){
+
+          if($scope.noteTitle!==''||null){
+            var noteContent=$scope.noteTitle;
+            //这里注意要将新添加的数据变为对象，即todo这种格式，否则不会添加
+            var todo={
+              title:noteContent,
+              checked:false
+            };
+            $scope.todos.unshift(todo);
+            $scope.noteTitle='';
+          }
+        };
+        $scope.delete=function(){
+          var newTodo=[];
+          //这里对todos进行循环，todo是其中一个个体，这里当做形参，将checked是false的全放入newTodo中，再将todos换成newTodo
+          $scope.todos.forEach(function(todo){
+            if(todo.checked!==true){
+              newTodo.push(todo);
+            }
+          });
+          $scope.todos=newTodo;
+        }
+      }])
+</script>
+</body>
+</html>

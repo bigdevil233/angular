@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap 101 Template</title>
+</head>
+<body ng-app="noteApp">
+<script type="text/javascript" src="../angular-1.2.29/angular.js"></script>
+<h1>我的笔记</h1>
+<div ng-controller="noteCtrl">
+  <textarea name="note" id="" cols="50" rows="20" ng-model="noteContent"></textarea>
+  <p>
+    <button ng-click="save()">保存</button>
+    <button ng-click="clear()">清除</button>
+    <button ng-click="reload()">读取</button>
+  </p>
+  <p>剩余字数:{{noteCounter()}}</p>
+</div>
+
+<script type="text/javascript">
+  angular.module('noteApp',[])
+    .controller('noteCtrl',['$scope',function($scope){
+      $scope.noteContent='';
+      $scope.save=function(){
+        var noteContent=$scope.noteContent;
+        sessionStorage.setItem('noteContent',noteContent);
+      };
+      $scope.clear=function(){
+        $scope.noteContent='';
+      };
+      $scope.reload=function(){
+        var noteContent=sessionStorage.getItem('noteContent');
+        $scope.noteContent=noteContent||'';
+      };
+      $scope.noteCounter=function(){
+        var noteCounter=100-$scope.noteContent.length;
+        return noteCounter;
+      }
+    }])
+</script>
+</body>
+</html>

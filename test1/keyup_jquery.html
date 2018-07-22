@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap 101 Template</title>
+</head>
+<body>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.js"></script>
+<input type="text" placeholder="请输入用户名" id="name">
+<p>你输入的用户是:<span id="inputName"></span></p>
+
+<script type="text/javascript">
+  $(function(){
+    $('#name').keyup(function(){
+      var name=this.value;
+      $('#inputName').html(name);
+    });
+  });
+</script>
+</body>
+</html>

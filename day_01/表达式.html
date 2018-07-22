@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap 101 Template</title>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl1">
+<script type="text/javascript" src="../angular-1.2.29/angular.js"></script>
+<!--
+1. 使用Angular表达式:
+  * 语法: {{expression}}
+  * 作用: 显示表达式的结果数据
+  * 注意: 表达式中引用的变量必须是当前域对象有的属性(包括其原型属性)
+2. 操作的数据
+  * 基本类型数据: number/string/boolean
+  * undefined, Infinity, NaN, null解析为空串: "", 不显示任何效果
+  * 对象的属性或方法
+  * 数组
+-->
+<p>1</p>
+<p>{{abc}}</p>
+<p>{{abcd.split('').reverse().join('')}}</p>
+<!--三目运算符也支持，但if、while、for都不支持-->
+<p>{{af>17?'已成年':'未成年'}}</p>
+<p>{{4+3}}</p>
+<p>{{true}}</p>
+
+<p ng-init="a=3;b=4">{{a+b}}</p>
+<script type="text/javascript">
+    angular.module('myApp',[])
+      .controller('myCtrl1',['$scope',function($scope){
+        $scope.abc='abc';
+        $scope.abcd='abcd';
+        $scope.af='18';
+      }])
+</script>
+</body>
+</html>

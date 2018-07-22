@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap 101 Template</title>
+</head>
+<body ng-app="myNote">
+<script type="text/javascript" src="../angular-1.2.29/angular.js"></script>
+<h1>我的备忘录</h1>
+<div ng-controller="myCtrl1">
+  <input type="text" ng-model="inputTodo">
+  <button ng-click="addNote()">新增</button>
+  <div ng-repeat="todo in todos">
+    <input type="checkbox" ng-model="todo.checked">
+    <span ng-bind="todo.title"></span>
+  </div>
+  <button ng-click="deleteTodo()">删除选中</button>
+</div>
+
+<script type="text/javascript">
+    angular.module('myNote',[])
+      .controller('myCtrl1',['$scope',function($scope){
+        $scope.todos=[
+          {
+            title:'coding',
+            checked:false
+          },
+          {
+            title:'coding2',
+            checked:false
+          }
+
+        ];
+        $scope.inputTodo='';
+        $scope.addNote=function(){
+          if($scope.inputTodo!=''||null){
+            var inputTodo=$scope.inputTodo;
+            var todo={
+              title:inputTodo,
+              checked:false
+            };
+            //这里如果使用push而不是unshift则会添加到最前面
+            $scope.todos.unshift(todo);
+            $scope.inputTodo='';
+          }
+        };
+        $scope.deleteTodo=function(){
+          var newTodos=[];
+          $scope.todos.forEach(function (todo){
+            if(!todo.checked){
+              newTodos.push(todo);
+            }
+          });
+          $scope.todos=newTodos;
+        };
+      }])
+</script>
+
+
+</body>
+</html>

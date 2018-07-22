@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap 101 Template</title>
+</head>
+<body ng-app="testApp">
+<script type="text/javascript" src="../angular-1.2.29/angular.js"></script>
+<div ng-controller="testCtrl1">
+  <input type="text" ng-model="userName">
+  <p>第一个输入框：{{userName}}</p>
+</div>
+<div ng-controller="testCtrl2">
+  <input type="text" ng-model="userName">
+  <p>第二个输入框：{{userName}}</p>
+</div>
+<div ng-controller="testCtrl3">
+  <input type="text" ng-model="firstName">
+  <input type="text" ng-model="lastName">
+  <p>输入内容为:{{firstName+'-'+lastName}}</p>
+</div>
+<script type="text/javascript">
+  angular.module('testApp',[])
+    .controller('testCtrl1',['$scope',function(a){
+      a.userName='aaa';
+    }])
+    .controller('testCtrl2',['$scope',function(b){
+      b.userName='bbb';
+    }])
+    .controller('testCtrl3',['$scope',function(c){
+      c.firstName='奎因';
+      c.lastName='哈璐特';
+    }]);
+</script>
+</body>
+</html>

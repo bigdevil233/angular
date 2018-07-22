@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap 101 Template</title>
+</head>
+<body ng-app="myApp">
+<script type="text/javascript" src="../angular-1.2.29/angular.js"></script>
+<div ng-controller="MyCtrl1">
+  <input type="text" ng-model="empName">
+  <p>输入的内容1：{{empName}}</p>
+</div>
+<div ng-controller="MyCtrl2">
+  <input type="text" ng-model="empName">
+  <p>输入的内容2：{{empName}}</p>
+</div>
+<script type="text/javascript">
+//  //创建当前应用的模块对象
+//    var module=angular.module('myApp',[]);
+//    //定义控制器
+//    module.controller('MyCtrl1',function($scope){
+//      $scope.empName='kkk';
+//    });
+//    module.controller('MyCtrl2',function($scope){
+//      $scope.empName='ccc';
+//    });
+
+//上面的写法问题：
+//  1.只能写指定的变量名
+//  2.如果压缩后，不能正常运行
+  angular.module('myApp',[])
+    .controller('MyCtrl1',['$scope',function(a){
+      a.empName='kkk2';
+    }])
+    .controller('MyCtrl2',['$scope',function(b){
+      b.empName='ccc2';
+    }]);
+</script>
+</body>
+</html>

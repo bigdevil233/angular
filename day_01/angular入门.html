@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap 101 Template</title>
+</head>
+<body ng-app>
+<script>
+//  注釋：
+//    ng-app:声明所在的整个标签都由angular来解析管理
+//    ng-model：将当前输入框的值关联到内存的$rootScope对象的指定属性上
+//    {{x}}：显示作用域对象上$rootScope对应属性的值上
+//
+//    结果：
+//    当页面输入框的数据改变时，angular会将数据更新到域对象的对应属性
+//    当域对象上的属性数据发生改变时，会更新对应的页面显示
+</script>
+<script type="text/javascript" src="../angular-1.2.29/angular.js"></script>
+<input type="text" placeholder="请输入用户名" ng-model="name">
+<p>你输入的用户是:{{name}}</p>
+
+</body>
+</html>
